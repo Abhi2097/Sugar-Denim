@@ -1,0 +1,34 @@
+2018-08-20 12:39:51,379 [Worker-1: Loading available Gradle versions] INFO  c.g.t.t.d.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2018-08-20 12:41:32,073 [Worker-7: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.niit:EcommDBMS:0.0.1-SNAPSHOT @ F:\Website on Ecommerce\EcommDBMS\pom.xml.
+2018-08-20 12:41:32,074 [Worker-6: Building workspace] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.niit:EcommDBMS:0.0.1-SNAPSHOT @ F:\Website on Ecommerce\EcommDBMS\pom.xml.
+2018-08-20 12:41:34,967 [Worker-6: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-08-20 12:41:34,967 [Worker-6: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\Website on Ecommerce\EcommDBMS\src\main\resources
+2018-08-20 12:41:35,025 [Worker-6: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-08-20 12:41:35,026 [Worker-6: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\Website on Ecommerce\EcommDBMS\src\test\resources
+2018-08-20 12:41:38,605 [Worker-4: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.niit:EcommDBMS:0.0.1-SNAPSHOT @ F:\Website on Ecommerce\EcommDBMS\pom.xml.
+2018-08-20 12:41:39,193 [Worker-5: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-08-20 12:41:39,193 [Worker-5: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\Website on Ecommerce\EcommDBMS\src\main\resources
+2018-08-20 12:41:39,197 [Worker-5: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-08-20 12:41:39,197 [Worker-5: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\Website on Ecommerce\EcommDBMS\src\test\resources
+2018-08-20 12:41:41,273 [Worker-0: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-08-20 12:41:41,273 [Worker-0: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\Website on Ecommerce\EcommDBMS\src\main\resources
+2018-08-20 12:41:41,276 [Worker-0: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-08-20 12:41:41,276 [Worker-0: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\Website on Ecommerce\EcommDBMS\src\test\resources
+2018-08-20 12:42:06,803 [Worker-3: Launching Executing install in F__Website on Ecommerce_EcommDBMS] INFO  o.e.m.i.launch.MavenLaunchDelegate - F:\Website on Ecommerce\EcommDBMS
+2018-08-20 12:42:06,804 [Worker-3: Launching Executing install in F__Website on Ecommerce_EcommDBMS] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B install
+2018-08-20 12:42:14,974 [Worker-5: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-08-20 12:42:14,974 [Worker-5: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\Website on Ecommerce\EcommDBMS\src\main\resources
+2018-08-20 12:42:14,976 [Worker-5: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-08-20 12:42:14,976 [Worker-5: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\Website on Ecommerce\EcommDBMS\src\test\resources
+2018-08-20 12:42:57,363 [Worker-8: Launching Executing clean in F__Website on Ecommerce_EcommDBMS] INFO  o.e.m.i.launch.MavenLaunchDelegate - F:\Website on Ecommerce\EcommDBMS
+2018-08-20 12:42:57,364 [Worker-8: Launching Executing clean in F__Website on Ecommerce_EcommDBMS] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean
+2018-08-20 12:43:00,603 [Worker-9: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-08-20 12:43:00,603 [Worker-9: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\Website on Ecommerce\EcommDBMS\src\main\resources
+2018-08-20 12:43:00,605 [Worker-9: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-08-20 12:43:00,605 [Worker-9: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\Website on Ecommerce\EcommDBMS\src\test\resources
+2018-08-20 12:43:07,493 [Worker-7: Launching Executing install in F__Website on Ecommerce_EcommDBMS] INFO  o.e.m.i.launch.MavenLaunchDelegate - F:\Website on Ecommerce\EcommDBMS
+2018-08-20 12:43:07,493 [Worker-7: Launching Executing install in F__Website on Ecommerce_EcommDBMS] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B install
+2018-08-20 12:43:12,114 [Worker-4: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-08-20 12:43:12,115 [Worker-4: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\Website on Ecommerce\EcommDBMS\src\main\resources
+2018-08-20 12:43:12,117 [Worker-4: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-08-20 12:43:12,118 [Worker-4: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\Website on Ecommerce\EcommDBMS\src\test\resources

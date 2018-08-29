@@ -1,0 +1,82 @@
+package com.niit.controller;
+
+import java.util.List;
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.niit.dao.ProductDao;
+import com.niit.models.Product;
+
+
+@Controller
+public class ProductController {
+	@Autowired
+	private ProductDao productDao;
+public ProductController(){
+	System.out.println("ProductController Bean is Created");
+}
+
+@RequestMapping(value="/admin/addproduct")
+public ModelAndView showsupplierPage(@ModelAttribute("product") Product product, Model model) {
+    
+	ModelAndView mv=new ModelAndView("Product");
+	
+	System.out.println(product.getCategory().toString());
+	mv.addObject("product",product);
+
+	return mv;
+}
+
+@RequestMapping(value="/admin/saveproduct")
+public String saveProduct(@ModelAttribute("product") Product product, Model model)
+{
+	productDao.saveProduct(product);
+	System.out.println("Product saved");
+	return "redirect:/admin/addproduct";
+	
+}
+
+@RequestMapping(value="/all/getallproducts")
+public String getAllProducts(Model model){
+	List<Product> products=productDao.getAllProducts();
+	//Attribute name is the Key - productList
+	//value - List<Product> products is the data
+	model.addAttribute("productsList",products);
+	//                 attributename   data
+	return "listofproduct";//logical view name
+	//in listofproducts.jsp,access the model attribute "productsList"
+
+}
+
+@RequestMapping(value="/admin/deleteproduct/{id}")
+public String deleteProduct(@PathVariable int id,Model model){
+	productDao.deleteProduct(id);
+	return "redirect:/all/getallproducts";
+}
+
+@RequestMapping(value="/admin/getupdateform/{id}")
+public String getUpdateProductForm(@PathVariable int id,Model model){
+	//how to get the product?
+	Product product=productDao.getProduct(id);
+	model.addAttribute("product",product);
+	model.addAttribute("categories",productDao.getAllCategories());
+	return "updateproductform";
+}
+@RequestMapping(value="/admin/updateproduct")
+public String updateProduct(@ModelAttribute Product product,BindingResult result,Model model){//product will have updated values
+     
+	
+	productDao.updateProduct(product);
+	return "redirect:/all/getallproducts";
+}
+}
+
