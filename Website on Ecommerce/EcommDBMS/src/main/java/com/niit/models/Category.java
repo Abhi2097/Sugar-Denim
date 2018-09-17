@@ -43,4 +43,8 @@ public String getCategDesc() {
 public void setCategDesc(String categDesc) {
 	this.categDesc = categDesc;
 }
+@Override
+public String toString() {
+  return this.id + " " + this.categName;
+}
 }

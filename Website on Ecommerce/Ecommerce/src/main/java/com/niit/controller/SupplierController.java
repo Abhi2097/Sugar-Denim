@@ -10,10 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import com.niit.dao.SupplierDao;
 import com.niit.models.Supplier;
-
 
 @Controller
 public class SupplierController {
@@ -22,7 +20,6 @@ public class SupplierController {
 public SupplierController(){
 	System.out.println("SupplierController Bean is Created");
 }
-
 @RequestMapping(value="/admin/addsupplier")
 public ModelAndView showsupplierPage(Object Supplier) {
     
@@ -41,6 +38,4 @@ public String saveCateogry(@ModelAttribute("supplier") Supplier supplier, Model 
 	return "redirect:/admin/addsupplier";
 	
 }
-
 }
-

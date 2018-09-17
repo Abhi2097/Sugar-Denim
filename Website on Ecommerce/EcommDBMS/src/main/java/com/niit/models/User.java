@@ -1,56 +1,24 @@
 package com.niit.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.OneToOne;
 @Entity
-public class User {
-	@Id  // - property id unique and not null
-	@GeneratedValue(strategy=GenerationType.AUTO) //auto generation - automatically generate the value for id
-private int id;
-private String Username;
-private String Email;
-private int PhoneNumber;
+public class User {//Authentication
+	@Id
+private String email;
 private String password;
-private String Role;
-private boolean Enable;
-public String getRole() {
-	return Role;
-}
-public void setRole(String role) {
-	Role = role;
-}
-public boolean getEnable() {
-	return Enable;
-}
-public void setEnable(boolean enable) {
-	Enable = enable;
-}
-public int getId() {
-	return id;
-}
-public void setId(int id) {
-	this.id = id;
-}
-public String getUsername() {
-	return Username;
-}
-public void setUsername(String username) {
-	Username = username;
-}
+private boolean enabled;
+@OneToOne(mappedBy="user",cascade=CascadeType.ALL)
+private Customer customer;
+@OneToOne(mappedBy="user",cascade=CascadeType.ALL)
+private Authorities authorities;
 public String getEmail() {
-	return Email;
+	return email;
 }
 public void setEmail(String email) {
-	Email = email;
-}
-public int getPhoneNumber() {
-	return PhoneNumber;
-}
-public void setPhoneNumber(int phoneNumber) {
-	PhoneNumber = phoneNumber;
+	this.email = email;
 }
 public String getPassword() {
 	return password;
@@ -58,4 +26,23 @@ public String getPassword() {
 public void setPassword(String password) {
 	this.password = password;
 }
+public boolean isEnabled() {
+	return enabled;
+}
+public void setEnabled(boolean enabled) {
+	this.enabled = enabled;
+}
+public Customer getCustomer() {
+	return customer;
+}
+public void setCustomer(Customer customer) {
+	this.customer = customer;
+}
+public Authorities getAuthorities() {
+	return authorities;
+}
+public void setAuthorities(Authorities authorities) {
+	this.authorities = authorities;
+}
+
 }

@@ -14,7 +14,6 @@
    <form:input path="SuppAddr" ></form:input></label>
 	
 	<button type="submit">Add Suppiler</button>
-    
     </div>
 	</form:form>
 <%@ include file="Footer.jsp" %>

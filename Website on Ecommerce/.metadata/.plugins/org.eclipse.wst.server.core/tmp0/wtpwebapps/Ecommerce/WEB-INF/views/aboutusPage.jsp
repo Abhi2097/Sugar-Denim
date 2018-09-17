@@ -48,7 +48,7 @@
 <strong>made with love and care.</strong>
 <br><br>
 <strong>Thank you so much for visiting us.</strong>
-<br>"src/main/webapp/WEB-INF/views/aboutusPage.jsp"
+<br>
 <strong>Hope you can find what suits you most.</strong>
 <br>
 <strong>If not, come visit us soon, we design new products every week!</strong>

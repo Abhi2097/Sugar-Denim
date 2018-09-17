@@ -1,42 +1,49 @@
 package com.niit.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import java.security.Principal;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.niit.dao.CartItemDao;
+import com.niit.dao.ProductDao;
+import com.niit.models.CartItem;
 import com.niit.models.User;
 
 @Controller  // is to create a bean in SPRING CONTAINER
 public class HomeController {
 	
+	@Autowired
+  private ProductDao productDao;
+	   @Autowired
+		private CartItemDao cartItemDao;
 	public HomeController(){
 		System.out.println("HomeController bean is Created");
 	}
 	
-	
-	
+
 	@RequestMapping("/")
-	public ModelAndView showhomePage()
-	{
+	public ModelAndView showhomePage(HttpSession session,@AuthenticationPrincipal Principal principal){
 		ModelAndView mv=new ModelAndView("homePage");
+		session.setAttribute("categories",productDao.getAllCategories());
+		if(principal!=null) {
+		String email=principal.getName();
+		List<CartItem> cartItems=cartItemDao.getCart(email);
+		session.setAttribute("cartSize",cartItems.size());
+		System.out.println(cartItems.size());
+		}
 		mv.addObject("isIndexClicked",true);
 		return mv;
 	}
 
-
-	  
-   /* @RequestMapping(value="/")//  /home - KEY in Handler Map
-	public String getHomePage(){  //  getHomePage() is the Value in Handler map
-    	System.out.println("Entering getHomePage() method in HomeController"); 
-		return "homePage";   //logical view name
-	}
-    
-    
-    */
-    
     @RequestMapping("/aboutus")
 	public ModelAndView showAboutus()
 	{
@@ -45,26 +52,21 @@ public class HomeController {
 		return mv;
 	}
 
-    @RequestMapping("/login")
-   	public ModelAndView showLogin()
-   	{
-   		ModelAndView mv=new ModelAndView("homePage");
-   		User user=new User();
-   		mv.addObject("User",user);
-   		mv.addObject("isLoginClicked",true);
-   		return mv;
-   	}
 
-    @RequestMapping("/Signup")
-   	public ModelAndView showSignUP()
-   	{
-   		ModelAndView mv=new ModelAndView("homePage");
-    	User user=new User();
-   		mv.addObject("User",user);
-   		mv.addObject("isSignUPClicked",true);
-   		return mv;
-   	}
-    
+    @RequestMapping(value="/login")
+    public String login(){
+    	return "Signin";
+    }
+    @RequestMapping(value="/loginerror")
+    public String loginFailed(Model model){
+    	model.addAttribute("error","Invalid credentials..");
+    	return "Signin";
+    }
+    @RequestMapping(value="/logout")
+    public String logout(Model model){
+    	model.addAttribute("msg","Loggedout successfully...");
+    	return "Signin";
+    }
     @RequestMapping("/contact")
    	public ModelAndView showContact()
    	{
@@ -73,44 +75,7 @@ public class HomeController {
    		return mv;
    	}
     
-    @RequestMapping("/shirt")
-   	public ModelAndView showshirt()
-   	{
-   		ModelAndView mv=new ModelAndView("homePage");
-   		mv.addObject("isShirtClicked",true);
-   		return mv;
-   	}
-    
-    @RequestMapping("/jackets")
-   	public ModelAndView showjackets()
-   	{
-   		ModelAndView mv=new ModelAndView("homePage");
-   		mv.addObject("isJacketClicked",true);
-   		return mv;
-   	}
-    
-    @RequestMapping("/denim")
-   	public ModelAndView showdenim()
-   	{
-   		ModelAndView mv=new ModelAndView("homePage");
-   		mv.addObject("isDenimClicked",true);
-   		return mv;
-   	}
-    
-    @RequestMapping("/cap")
-   	public ModelAndView showcaps()
-   	{
-   		ModelAndView mv=new ModelAndView("homePage");
-   		mv.addObject("isCapClicked",true);
-   		return mv;
-   	}
-   /* @RequestMapping("/category")
-   	public ModelAndView showcategory()
-   	{
-   		ModelAndView mv=new ModelAndView("homePage");
-   		mv.addObject("isCategoryClicked",true);
-   		return mv;
-   	}*/
+  
    
 }
 

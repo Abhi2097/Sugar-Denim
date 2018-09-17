@@ -3,14 +3,16 @@ package com.niit.configuration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.niit.models.Cart_items;
-import com.niit.models.Login;
-import com.niit.models.Orders;
+import com.niit.models.Authorities;
+import com.niit.models.BillingAddress;
+import com.niit.models.CartItem;
 import com.niit.models.Product;
-import com.niit.models.Shipment_Address;
+import com.niit.models.ShippingAddress;
 import com.niit.models.Supplier;
 import com.niit.models.User;
 import com.niit.models.Category;
+import com.niit.models.Customer;
+import com.niit.models.CustomerOrder;
 
 import java.util.Properties;
 
@@ -48,12 +50,12 @@ public class DBConfiguration {
 		LocalSessionFactoryBuilder lsf=new LocalSessionFactoryBuilder(getDataSource());
 		Properties hibernateProperties=new Properties();
 		hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create");
+		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
 		hibernateProperties.setProperty("hibernate.show_sql", "true");
 		lsf.addProperties(hibernateProperties);
 		//An array of Class objects of all the entities
 		//Map all entities to relational table
-		Class classes[]=new Class[]{User.class,Product.class,Shipment_Address.class,Orders.class,Cart_items.class,Category.class,Supplier.class,Login.class};//If product class is not yet created, remove this and add it later
+		Class classes[]=new Class[]{User.class,Product.class,ShippingAddress.class,CartItem.class,Category.class,Supplier.class,Customer.class,Authorities.class,BillingAddress.class,CustomerOrder.class};//If product class is not yet created, remove this and add it later
 		//localsesionfactorybuilder -> sessionfactory -> map all entities with relation table
 		
 		System.out.println("SessionFactory bean " + lsf);

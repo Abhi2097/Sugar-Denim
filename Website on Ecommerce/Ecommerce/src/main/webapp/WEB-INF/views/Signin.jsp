@@ -1,19 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
- <form:form modelAttribute="User" action="${pageContext.request.contextPath}/admin/saveuserlogin" style="border:1px solid #ccc"> 
-  
-  <div class="container">
-    <h1><strong>Login</h1></strong>
-    <hr>
-    <form:hidden path="id"></form:hidden></td>
+    pageEncoding="ISO-8859-1"%> 
+<%@include file="Header.jsp" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
+<head>
+<body>
+<span style="color:red">${error }</span><br>
+${msg }<br>
+<strong>Login Page</strong>
+<br>
+<hr>
+<c:url value="/j_spring_security_check" var="url"></c:url>
+<form method="post" action="${url }">
+Enter Email :<input type="text" name="j_username"><br>
+Enter password : <input type="password" name="j_password">
+<button type="submit">Login</button>
+</form>
+<%@ include file="Footer.jsp" %>
+</body>
+</html>
     
-    <label for="email"><b>Username</b></label>
-    <form:input path="username" placeholder="Enter name" ></form:input>
-
-    <label for="psw"><b>Password</b></label>
-    <form:password path="password" ></form:password>
-
-      <button type="submit">Login</button>
-</div>
-    </form:form>

@@ -1,6 +1,14 @@
 package com.niit.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +17,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.niit.dao.ProductDao;
@@ -22,43 +32,33 @@ private ProductDao productDao;
 public ProductController(){
 	System.out.println("ProductController Bean is Created");
 }
-
 @RequestMapping(value="/admin/addproduct")
-public String addProduct(@ModelAttribute(name="product") Product product  ){
+public String addProduct(@Valid @ModelAttribute(name="product") Product product,BindingResult result,Model model ,HttpServletRequest request ){
+	//after validation, if result has any errors
+	if(result.hasErrors()){//if it is true, result has errors
+		model.addAttribute("categories",productDao.getAllCategories());
+		return "productform";
+	}
 	productDao.saveProduct(product);
-	System.out.println("Product saved");
+	MultipartFile img=product.getImage();
+	System.out.println(request.getServletContext().getRealPath("/"));
+	//Defining a path
+	Path path=Paths.get(request.getServletContext().getRealPath("/")+"/resources/images/"+product.getId()+".jpg");
+	//transfer the image to the file
+	if(!img.isEmpty()&&img!=null){
+		try {
+			img.transferTo(new File(path.toString()));
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	return "redirect:/all/getallproducts";
 }
-/*@RequestMapping(value="/admin/addproduct")
-public ModelAndView showproductPage() {
-    
-   
-	ModelAndView mv=new ModelAndView("productform");
-	Product product=new Product();
-	mv.addObject("product",product);
-
-	return mv;
-}*/
-/*@RequestMapping(value="/admin/addproduct")
-public ModelAndView showsupplierPage() {
-    
-	ModelAndView mv=new ModelAndView("Product");
-	Product product=new Product();
-	
-	mv.addObject("product",product);
-
-	return mv;
-}*/
-
-/*@RequestMapping(value="/admin/saveproduct")
-public String saveProduct(@ModelAttribute("product") Product product, Model model)
-{
-
-	productDao.saveProduct(product);
-	System.out.println("Product saved");
-	return "redirect:/admin/addproduct";
-	
-}*/
 @RequestMapping(value="/admin/getproductform")
 public String getproductform(Model model){
 	Product p=new Product();
@@ -68,16 +68,6 @@ public String getproductform(Model model){
 	//in the form, p.getId(),p.getProductname(),p.getPrice(),p.getQuantity(),p.getProductdesc()
 	return "productform";
 }
-/*@RequestMapping(value="/admin/getproductform")
-public String saveProduct(@ModelAttribute("product") Product product, Model model)
-{
-	productDao.saveProduct(product);
-	model.addAttribute("categories",productDao.getAllCategories());
-	System.out.println("Product saved");
-	return "redirect:/admin/addproduct";
-	
-}*/
-
 @RequestMapping(value="/all/getallproducts")
 public String getAllProducts(Model model){
 	List<Product> products=productDao.getAllProducts();
@@ -97,8 +87,17 @@ public String getProduct(@PathVariable int id,Model model){
 }
 
 @RequestMapping(value="/admin/deleteproduct/{id}")
-public String deleteProduct(@PathVariable int id,Model model){
+public String deleteProduct(@PathVariable int id,Model model,HttpServletRequest request){
 	productDao.deleteProduct(id);
+	Path path=Paths.get(request.getServletContext().getRealPath("/")+"/WEB-INF/resources/images/"+id+".jpg");
+	if(Files.exists(path)){
+		try {
+			Files.delete(path);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	return "redirect:/all/getallproducts";
 }
 
@@ -110,11 +109,39 @@ public String getUpdateProductForm(@PathVariable int id,Model model){
 	model.addAttribute("categories",productDao.getAllCategories());
 	return "updateproductform";
 }
-
 @RequestMapping(value="/admin/updateproduct")
-public String updateProduct(@ModelAttribute(name="product") Product product  ){
+public String updateProduct(@Valid @ModelAttribute Product product,BindingResult result,Model model,HttpServletRequest request){//product will have updated values
+   if(result.hasErrors()){
+	   model.addAttribute("categories",productDao.getAllCategories());
+	   return "updateproductform";
+   }
 	productDao.updateProduct(product);
+	MultipartFile img=product.getImage();
+	System.out.println(request.getServletContext().getRealPath("/"));
+	//Defining a path
+	Path path=Paths.get(request.getServletContext().getRealPath("/")+"/WEB-INF/resources/images/"+product.getId()+".jpg");
+	//transfer the image to the file
+	if(!img.isEmpty()&&img!=null){
+		try {
+			img.transferTo(new File(path.toString()));
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	return "redirect:/all/getallproducts";
 }
+@RequestMapping(value="/all/searchByCategory")
+public String searchByCategory(@RequestParam String searchCondition ,Model model){
+	if(searchCondition.equals("All"))
+		model.addAttribute("searchCondition","");
+	else
+	model.addAttribute("searchCondition",searchCondition);
+	model.addAttribute("productsList",productDao.getAllProducts());
+	return "listofproduct";
+	
 }
-
+}

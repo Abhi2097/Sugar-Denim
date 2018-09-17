@@ -5,25 +5,26 @@
 <html>
 <body>
  <%@ include file="Header.jsp" %>  
- <form:form modelAttribute="product" action="${pageContext.request.contextPath}/admin/updateproduct" style="border:1px solid #ccc">
+ <form:form modelAttribute="product" action="${pageContext.request.contextPath}/admin/updateproduct" method="post" enctype="multipart/form-data" style="border:1px solid #ccc">
   
 <div class="container">
   <form:hidden path="id"></form:hidden></td>
   <label><b>Enter Product Name</b></label>
     <form:input path="productname" placeholder="Enter Name"></form:input>
-    
+    <form:errors path="productname" cssStyle="color:red"></form:errors>
     
    <label><b>Enter Product Description</b></label>
    <form:input path="productdesc" ></form:input></label>
-   
+   <form:errors path="productdesc" cssStyle="color:red"></form:errors>  
    
    <label><b>Enter Product Price</b></label>
    <form:input path="price" ></form:input></label>
-   
+   <form:errors path="price" cssStyle="color:red"></form:errors>
    
    
    <label><b>Enter Product Quantity</b></label>
    <form:input path="quantity" ></form:input></label>
+   <form:errors path="quantity" cssStyle="color:red"></form:errors>
    
    <label><b>Select By Category</b></label>
    <form:select path="category.id"><!-- FK column value -->
@@ -31,8 +32,11 @@
    <c:forEach items="${categories }" var="c">
    <form:option value="${c.id }">${c.categName }</form:option>
    </c:forEach>
-   </form:select>		
-    <button type="submit">Edit Product</button>
+   </form:select>
+   <br>
+   <label><b>Upload Image</b></label>
+   <form:input path="image" type="file"/>	
+    <button type="submit">Edit Product</button>		
      </div>
 	</form:form>
 	<%@ include file="Footer.jsp" %>

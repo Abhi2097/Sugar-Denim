@@ -41,10 +41,10 @@ private SessionFactory sessionFactory;
 	}
 
 	
-	public Product getProduct() {
+	/*public Product getProduct() {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}*/
 
 	
 	public List<Product> getAllProducts() {
